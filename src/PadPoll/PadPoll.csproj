@@ -9,6 +9,7 @@
         <Configurations>Release;Debug</Configurations>
         <AssemblyName>padpoll</AssemblyName>
         <PublishAot>true</PublishAot>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
@@ -20,12 +21,23 @@
         <Optimize>true</Optimize>
         <OptimizationPreference>Speed</OptimizationPreference>
     </PropertyGroup>
+    
+    <PropertyGroup Condition="'$([System.OperatingSystem]::IsLinux())'">
+        <DefineConstants>LINUX</DefineConstants>
+    </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="EvDevSharpWrapper" Version="0.3.0" />
       <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <InternalsVisibleTo Include="PadPoll.Tests" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Compile Remove="Implementations/Linux/**/*.cs" />
+        <Compile Include="Implementations/Linux/**/*.cs" Condition="'$([System.OperatingSystem]::IsLinux())'" />
     </ItemGroup>
 
 </Project>

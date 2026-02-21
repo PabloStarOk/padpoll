@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "EvDevSharpWrapper": {
+        "type": "Direct",
+        "requested": "[0.3.0, )",
+        "resolved": "0.3.0",
+        "contentHash": "pxgUo2ZCRE2QVChSIb6n8p2fzUeox8bmRlrbsrNcOZ2IZsm6EmdiOvNJmteW/FKraECNtxWCqLcMCI3Cd9F+bw=="
+      },
+      "Microsoft.DotNet.ILCompiler": {
+        "type": "Direct",
+        "requested": "[8.0.24, )",
+        "resolved": "8.0.24",
+        "contentHash": "ZHqjIUXvVXBtYP3dSIvzvLSG7KNJuh5sOBNVl989CSV74PwQ3ISgYSpidmznOohwn10ifhHrD8KqA+CL7hn7/A=="
+      },
+      "Microsoft.NET.ILLink.Tasks": {
+        "type": "Direct",
+        "requested": "[10.0.3, )",
+        "resolved": "10.0.3",
+        "contentHash": "0B6nZyCHWXnvmlB559oduOspVdNOnpNXPjhpWVMovLPAsDVG7A4jJR9rzECf67JUzxP8/ee/wA8clwIzJcWNFA=="
+      },
+      "StyleCop.Analyzers": {
+        "type": "Direct",
+        "requested": "[1.1.118, )",
+        "resolved": "1.1.118",
+        "contentHash": "Onx6ovGSqXSK07n/0eM3ZusiNdB6cIlJdabQhWGgJp3Vooy9AaLS/tigeybOJAobqbtggTamoWndz72JscZBvw=="
+      }
+    }
+  }
+}

@@ -167,7 +167,7 @@ public sealed class App
         for (int i = 0; i < StabilizationSamples; i++)
         {
             _ = timestampCollector.GetPacketMicrosecondsTimestamp();
-            _stdIo.Out.Write($"\rProgress: [{(decimal)i / StabilizationSamples:P}]");
+            _stdIo.Out.Write($"\rProgress: [{(decimal)(i + 1) / StabilizationSamples:P}]");
         }
 
         _stdIo.Out.WriteLine("\nCompleted\n");

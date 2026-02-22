@@ -7,7 +7,7 @@ var console = new DefaultStandardIo();
 try
 {
     IControllerDetector controllerDetector = ControllerDetectorFactory.Create();
-    var app = new App(console, controllerDetector);
+    var app = new App(console, controllerDetector, new MetricsCalculator());
     await app.RunAsync();
 }
 catch (PlatformNotSupportedException ex)

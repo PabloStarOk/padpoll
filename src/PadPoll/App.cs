@@ -82,9 +82,9 @@ public sealed class App
         }
 
         _stdIo.Out.Write("Type the number of the controller to test: ");
-        string? number = _stdIo.In.ReadLine();
-
-        if (number is not null && int.TryParse(number, out int selectedIndex) && selectedIndex >= 0
+        ReadOnlySpan<char> number = _stdIo.In.ReadLine().AsSpan();
+        if (!number.IsEmpty && !number.IsWhiteSpace()
+            && int.TryParse(number, out int selectedIndex) && selectedIndex >= 0
             && selectedIndex < controllers.Count)
         {
             controller = controllers[selectedIndex];

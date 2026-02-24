@@ -1,6 +1,8 @@
 using System.Runtime.InteropServices;
 using PadPoll.Abstractions;
+#if LINUX
 using PadPoll.Implementations.Linux;
+#endif
 
 namespace PadPoll.Implementations;
 
@@ -15,10 +17,12 @@ public static class ControllerDetectorFactory
     /// <returns>An instance of <see cref="IControllerDetector"/> for the current platform.</returns>
     public static IControllerDetector Create()
     {
+#if LINUX
         if (OperatingSystem.IsLinux())
         {
             return new LinuxControllerDetector();
         }
+#endif
 
         throw new PlatformNotSupportedException($"{RuntimeInformation.OSDescription} is not currently supported.");
     }

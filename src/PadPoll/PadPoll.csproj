@@ -24,8 +24,8 @@
         <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     </PropertyGroup>
     
-    <PropertyGroup Condition="'$([System.OperatingSystem]::IsLinux())'">
-        <DefineConstants>LINUX</DefineConstants>
+    <PropertyGroup>
+        <DefineConstants Condition="'$([System.OperatingSystem]::IsLinux())'">LINUX</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>

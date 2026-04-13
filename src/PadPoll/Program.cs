@@ -6,7 +6,7 @@ var console = new DefaultStandardIo();
 
 try
 {
-    IControllerDetector controllerDetector = ControllerDetectorFactory.Create();
+    IControllerDetector controllerDetector = ControllerDetectorFactory.Create(console);
     var app = new App(console, controllerDetector, new MetricsCalculator());
     await app.RunAsync();
 }

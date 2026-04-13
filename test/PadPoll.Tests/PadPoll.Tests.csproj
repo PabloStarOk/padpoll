@@ -5,6 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,6 +29,8 @@
     <ItemGroup>
         <Compile Remove="Implementations/Linux/**/*.cs" />
         <Compile Include="Implementations/Linux/**/*.cs" Condition="'$([System.OperatingSystem]::IsLinux())'" />
+        <Compile Remove="Implementations/Windows/**/*.cs" />
+        <Compile Include="Implementations/Windows/**/*.cs" Condition="'$([System.OperatingSystem]::IsWindows())'" />
     </ItemGroup>
 
 </Project>

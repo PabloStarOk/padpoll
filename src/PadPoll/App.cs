@@ -35,8 +35,9 @@ public sealed class App
     /// <summary>
     /// Runs the main application workflow asynchronously.
     /// </summary>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-    public async Task RunAsync()
+    public async Task RunAsync(CancellationToken cancellationToken)
     {
         var assembly = Assembly.GetExecutingAssembly();
         var versionAttr = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
@@ -67,6 +68,7 @@ public sealed class App
         long[] timestamps = CollectTimestamps(selectedController, (ControllerInput)selectedJoystick, requiredSamples);
         Metrics metrics = _metricsCalculator.Calculate(timestamps, expectedHz);
         DisplayMetrics(metrics);
+        await Task.Delay(Timeout.InfiniteTimeSpan, cancellationToken);
     }
 
     private bool TrySelectController(

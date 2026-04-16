@@ -1,6 +1,5 @@
 using PadPoll.Abstractions;
 using PadPoll.Models;
-using PadPoll.Shared;
 
 namespace PadPoll.Implementations;
 
@@ -33,7 +32,7 @@ public sealed class MetricsCalculator : IMetricsCalculator
         for (int i = 0; i < timestamps.Length - 1; i++)
         {
             long interval = timestamps[i + 1] - timestamps[i];
-            msIntervals[i] = Math.Max(1, (decimal)interval / Time.MicrosecondsPerMillisecond);
+            msIntervals[i] = Math.Max(1, (decimal)interval / TimeSpan.MicrosecondsPerMillisecond);
         }
 
         return msIntervals.ToArray();
@@ -45,7 +44,7 @@ public sealed class MetricsCalculator : IMetricsCalculator
         decimal? expectedHz)
     {
         decimal averageHz = CalculateAverageHz(timestamps);
-        decimal peakHz = Time.MillisecondsPerSecond / msIntervals.Min();
+        decimal peakHz = TimeSpan.MillisecondsPerSecond / msIntervals.Min();
         bool validExpectedHz = expectedHz is > 0;
         decimal? accuracy = validExpectedHz ? averageHz / expectedHz : null;
         decimal? consistency = validExpectedHz ? CalculateConsistency(msIntervals, expectedHz!.Value) : null;
@@ -57,7 +56,7 @@ public sealed class MetricsCalculator : IMetricsCalculator
         var hzPerSeconds = new Dictionary<long, int>();
         foreach (long timestamp in timestamps)
         {
-            long second = timestamp / Time.MicrosecondsPerSecond;
+            long second = timestamp / TimeSpan.MicrosecondsPerSecond;
             hzPerSeconds[second] = hzPerSeconds.GetValueOrDefault(second) + 1;
         }
 
@@ -68,13 +67,13 @@ public sealed class MetricsCalculator : IMetricsCalculator
         }
 
         int intervalsCount = timestamps.Length - 1;
-        decimal totalDurationSeconds = (timestamps[^1] - timestamps[0]) / (decimal)Time.MicrosecondsPerSecond;
+        decimal totalDurationSeconds = (timestamps[^1] - timestamps[0]) / (decimal)TimeSpan.MicrosecondsPerSecond;
         return intervalsCount / totalDurationSeconds;
     }
 
     private static decimal CalculateConsistency(decimal[] msIntervals, decimal expectedHz)
     {
-        decimal expectedIntervalMs = Time.MillisecondsPerSecond / expectedHz;
+        decimal expectedIntervalMs = TimeSpan.MillisecondsPerSecond / expectedHz;
         decimal tolerance = expectedIntervalMs * StabilityTolerancePercent;
         decimal lowerBound = expectedIntervalMs - tolerance;
         decimal upperBound = expectedIntervalMs + tolerance;

@@ -1,5 +1,4 @@
 using System.Runtime.InteropServices;
-using PadPoll.Shared;
 
 namespace PadPoll.Implementations.Linux;
 
@@ -41,6 +40,6 @@ internal readonly struct InputEvent
     /// <returns>A microseconds since the epoch.</returns>
     public long GetMicrosecondsTimestamp()
     {
-        return (TimeSeconds * Time.MicrosecondsPerSecond) + TimeMicroseconds;
+        return (TimeSeconds * TimeSpan.MicrosecondsPerSecond) + TimeMicroseconds;
     }
 }

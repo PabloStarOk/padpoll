@@ -1,6 +1,7 @@
 using Microsoft.Win32.SafeHandles;
 using PadPoll.Abstractions;
 using PadPoll.Models;
+using PadPoll.Models.Exceptions;
 
 namespace PadPoll.Implementations.Linux;
 
@@ -30,7 +31,7 @@ internal sealed class LinuxController : IController
     public static LinuxController Create(string displayName, string eventFilePath)
     {
         return !File.Exists(eventFilePath)
-            ? throw new FileNotFoundException(eventFilePath)
+            ? throw new DeviceDisconnectedException()
             : new LinuxController(displayName, eventFilePath);
     }
 
@@ -39,6 +40,11 @@ internal sealed class LinuxController : IController
     {
         const int evIoCsClockId = 0x400445A0;
         int monotonicClockId = 1;
+        if (!File.Exists(_evDevFilePath))
+        {
+            throw new DeviceDisconnectedException();
+        }
+
         SafeFileHandle handle = File.OpenHandle(_evDevFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         int evDevFd = handle.DangerousGetHandle().ToInt32();
         _ = LibC.ioctl(evDevFd, evIoCsClockId, ref monotonicClockId); // Set monotonic clock

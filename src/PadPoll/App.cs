@@ -149,7 +149,7 @@ public sealed class App
             input = input[..^2].Trim();
         }
 
-        if (input.IsEmpty || input.IsWhiteSpace() || decimal.TryParse(input, out expectedHz))
+        if (input.IsEmpty || input.IsWhiteSpace() || (decimal.TryParse(input, out expectedHz) && expectedHz > 0))
         {
             return true;
         }

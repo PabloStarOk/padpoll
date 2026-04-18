@@ -32,7 +32,7 @@ public sealed class MetricsCalculator : IMetricsCalculator
         for (int i = 0; i < timestamps.Length - 1; i++)
         {
             long interval = timestamps[i + 1] - timestamps[i];
-            msIntervals[i] = Math.Max(1, (decimal)interval / TimeSpan.MicrosecondsPerMillisecond);
+            msIntervals[i] = Math.Max(0.001m, (decimal)interval / TimeSpan.MicrosecondsPerMillisecond);
         }
 
         return msIntervals.ToArray();

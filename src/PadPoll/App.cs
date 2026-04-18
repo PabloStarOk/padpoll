@@ -43,7 +43,7 @@ public sealed class App
         var versionAttr = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
         _stdIo.PrintSectionTitle($"{assembly.GetName().Name} {versionAttr?.InformationalVersion}");
 
-        IReadOnlyList<IController> controllers = await _controllerDetector.DetectAsync();
+        IReadOnlyList<IController> controllers = await _controllerDetector.DetectAsync(cancellationToken);
         if (controllers.Count is 0)
         {
             _stdIo.Out.WriteLine("Controllers not found");

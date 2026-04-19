@@ -31,7 +31,7 @@ internal sealed class LinuxController : IController
     public static LinuxController Create(string displayName, string eventFilePath)
     {
         return !File.Exists(eventFilePath)
-            ? throw new DeviceDisconnectedException()
+            ? throw new DeviceException("The device could not be found, it could be disconnected.")
             : new LinuxController(displayName, eventFilePath);
     }
 
@@ -42,10 +42,19 @@ internal sealed class LinuxController : IController
         int monotonicClockId = 1;
         if (!File.Exists(_evDevFilePath))
         {
-            throw new DeviceDisconnectedException();
+            throw new DeviceException("The device could not be found, it could be disconnected.");
         }
 
-        SafeFileHandle handle = File.OpenHandle(_evDevFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        SafeFileHandle handle;
+        try
+        {
+            handle = File.OpenHandle(_evDevFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            throw new DeviceException($"Failed to access the device '{DisplayName}'. Ensure the current user has read permissions.");
+        }
+
         int evDevFd = handle.DangerousGetHandle().ToInt32();
         _ = LibC.ioctl(evDevFd, evIoCsClockId, ref monotonicClockId); // Set monotonic clock
         return new LinuxInputTimestampCollector(handle, monitoredInputs);

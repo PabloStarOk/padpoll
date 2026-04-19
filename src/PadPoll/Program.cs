@@ -17,7 +17,7 @@ catch (OperationCanceledException)
 {
     // Ignore
 }
-catch (Exception ex) when (ex is InitializationException or DeviceDisconnectedException or PlatformNotSupportedException)
+catch (Exception ex) when (ex is InitializationException or DeviceException or PlatformNotSupportedException)
 {
     console.PrintSectionTitle("Error");
     console.Error.WriteLine(ex.Message);

@@ -68,6 +68,7 @@ public sealed class App
         long[] timestamps = CollectTimestamps(selectedController, (ControllerInput)selectedJoystick, requiredSamples);
         Metrics metrics = _metricsCalculator.Calculate(timestamps, expectedHz);
         DisplayMetrics(metrics);
+        _stdIo.Out.WriteLine("Press 'CTRL + C' to exit");
         await Task.Delay(Timeout.InfiniteTimeSpan, cancellationToken);
     }
 

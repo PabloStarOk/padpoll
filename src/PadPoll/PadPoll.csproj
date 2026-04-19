@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
+        <RuntimeIdentifiers>linux-x64;win-x64</RuntimeIdentifiers>
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -10,6 +11,7 @@
         <AssemblyName>padpoll</AssemblyName>
         <PublishAot>true</PublishAot>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
         <Version>1.0.0</Version>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     </PropertyGroup>
@@ -32,6 +34,8 @@
 
     <ItemGroup>
       <PackageReference Include="EvDevSharpWrapper" Version="0.3.0" />
+      <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="10.0.6" />
+      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.6" />
       <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

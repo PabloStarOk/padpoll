@@ -41,7 +41,9 @@ internal sealed class DefaultStandardIo : IStandardIo
             title.AsSpan()[..line.Length].CopyTo(line);
         }
 
+        Console.ForegroundColor = ConsoleColor.Blue;
         Out.WriteLine();
         Out.WriteLine(line);
+        Console.ResetColor();
     }
 }

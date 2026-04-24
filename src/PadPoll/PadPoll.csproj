@@ -35,8 +35,6 @@
 
     <ItemGroup>
       <PackageReference Include="EvDevSharpWrapper" Version="0.3.0" />
-      <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="10.0.6" />
-      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.6" />
       <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

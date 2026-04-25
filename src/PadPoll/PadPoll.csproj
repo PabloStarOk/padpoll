@@ -11,7 +11,6 @@
         <AssemblyName>padpoll</AssemblyName>
         <PublishAot>true</PublishAot>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
         <Version>1.0.0</Version>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationIcon>icon.ico</ApplicationIcon>

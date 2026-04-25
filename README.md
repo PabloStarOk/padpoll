@@ -1,3 +1,5 @@
+![PadPoll icon](./.github/assets/icon.svg)
+
 # PadPoll
 
 A simple application to test polling rate of controllers on Windows and Linux. It relies on low-level APIs provided by 

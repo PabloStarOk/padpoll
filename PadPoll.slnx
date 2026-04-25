@@ -1,1 +1,4 @@
-<Solution />
+<Solution>
+  <Project Path="src/PadPoll/PadPoll.csproj" />
+  <Project Path="test/PadPoll.Tests/PadPoll.Tests.csproj" />
+</Solution>

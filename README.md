@@ -19,13 +19,12 @@ the operating systems to get the most accurate polling rate possible. On Windows
 ```powershell
 winget install Microsoft.GameInput
 ```
-
-2. Download the latest Windows executable from the [releases page](https://github.com/PabloStarOk/padpoll/releases).
+2. Download and extract the latest Windows ZIP file from the [releases page](https://github.com/PabloStarOk/padpoll/releases).
 3. Run the executable and follow the on-screen instructions to test your controller's polling rate.
 
 ### Linux
 
-1. Download the latest Linux executable from the [releases page](https://github.com/PabloStarOk/padpoll/releases).
+1. Download and extract the latest Linux TAR file from the [releases page](https://github.com/PabloStarOk/padpoll/releases).
 2. Ensure the file is executable:
 ```bash
 chmod +x padpoll
